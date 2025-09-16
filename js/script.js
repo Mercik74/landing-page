@@ -4,7 +4,7 @@ let colorIndex = 0;
  
 // Datos de los integrantes 
 const members = [ 
-  { photo: "alumno1.jpg", desc: "Jose Angel - Conocido como Juanito Manolo, bautizado por luis lao." }, 
+  { photo: "angel.jpeg", desc: "Jose Angel - Conocido como Juanito Manolo, bautizado por luis lao." }, 
   { photo: "alumno2.jpg", desc: "Alumno 2 - Descripción breve." } 
 ]; 
 let memberIndex = 0;
