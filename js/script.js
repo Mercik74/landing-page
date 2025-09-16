@@ -1,12 +1,18 @@
-// Colores para el fondo  
-const colors = ["#f4f4f4", "#ffcccc", "#ccffcc", "#ccccff", "#ffffcc"]; 
-let colorIndex = 0; 
- 
-// Datos de los integrantes 
-const members = [ 
-  { photo: "angel.jpeg", desc: "Jose Angel - Conocido como Juanito Manolo, bautizado por luis lao." }, 
-  { photo: "alumno2.jpg", desc: "Alumno 2 - Descripción breve." } 
-]; 
+// Colores para el fondo
+const colors = ["#c0c3feff", "#ffcccc", "#ccffcc", "#ccccff", "#ffffcc", "#ffd6cc", "#e6ccff"];
+let colorIndex = 0;
+
+// Datos de los integrantes
+const members = [
+    { 
+        photo: "img/angel.jpeg", 
+        desc: "Jose Angel Navarro Flores - Conocido como Juanito Manolo, bautizado por luis lao." 
+    },
+    { 
+        photo: "img/erick.jpg", 
+        desc: "Erick Martin Morin Lopez - Conocido como  Querick, no le sabe a los querys" 
+    }
+];
 let memberIndex = 0;
 
 // Variable para el tema
@@ -37,18 +43,79 @@ function setInitialTheme() {
         isDarkTheme = false;
     }
 }
- 
-// Botón cambio de color 
-document.getElementById("colorButton").addEventListener("click", () => { 
-  document.body.style.backgroundColor = colors[colorIndex]; 
-  colorIndex = (colorIndex + 1) % colors.length; 
+
+// Función para actualizar el reloj
+function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    
+    hours = hours % 12;
+    hours = hours ? hours : 12; // 0 debe ser 12
+    hours = hours.toString().padStart(2, '0');
+    
+    const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+    document.getElementById('clock').textContent = timeString;
+}
+
+// Función para actualizar el texto del botón
+function updateSwitchButtonText() {
+    const switchButton = document.getElementById('switchButton');
+    if (memberIndex === 0) {
+        switchButton.textContent = 'Mostrar Alumno 2';
+    } else {
+        switchButton.textContent = 'Mostrar Alumno 1';
+    }
+}
+
+
+// Inicializar cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    updateClock();
+    setInterval(updateClock, 1000); // Actualizar cada segundo
+    updateSwitchButtonText(); // Inicializar el texto del botón
+    setInitialTheme(); // Establecer tema inicial basado en preferencias del sistema
+});
+
+// Botón cambio de color
+document.getElementById("colorButton").addEventListener("click", () => {
+    document.body.style.backgroundColor = colors[colorIndex];
+    colorIndex = (colorIndex + 1) % colors.length;
+    
+    // Efecto visual en el botón
+    const button = document.getElementById("colorButton");
+    button.classList.add("bounce");
+    setTimeout(() => button.classList.remove("bounce"), 1000);
 }); 
- 
-// Botón cambio de integrante 
-document.getElementById("switchButton").addEventListener("click", () => { 
-  memberIndex = (memberIndex + 1) % members.length; 
-  document.getElementById("member-photo").src = members[memberIndex].photo; 
-  document.getElementById("member-desc").textContent = members[memberIndex].desc; 
+
+// Botón cambio de integrante
+document.getElementById("switchButton").addEventListener("click", () => {
+    memberIndex = (memberIndex + 1) % members.length;
+    
+    const memberPhoto = document.getElementById("member-photo");
+    const memberDesc = document.getElementById("member-desc");
+    
+    // Efecto de transición
+    memberPhoto.style.opacity = "0";
+    memberDesc.style.opacity = "0";
+    
+    setTimeout(() => {
+        memberPhoto.src = members[memberIndex].photo;
+        memberPhoto.alt = `Foto Alumno ${memberIndex + 1}`;
+        memberDesc.textContent = members[memberIndex].desc;
+        memberPhoto.style.opacity = "1";
+        memberDesc.style.opacity = "1";
+        
+        // Actualizar el texto del botón después del cambio
+        updateSwitchButtonText();
+    }, 200);
+    
+    // Efecto visual en el botón
+    const button = document.getElementById("switchButton");
+    button.classList.add("bounce");
+    setTimeout(() => button.classList.remove("bounce"), 1000);
 });
 
 // Botón cambio de tema (modo oscuro/claro)

@@ -1,35 +1,139 @@
-body { 
-  font-family: Arial, sans-serif; 
-  text-align: center; 
-  margin: 20px; 
-  background-color: #f4f4f4; 
-} 
- 
-h1 { 
-  color: #333; 
-} 
- 
-#team-name { 
-  color: #007BFF; 
-  margin-bottom: 20px; 
+/* Estilos base */
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+    background-color: #f4f4f4;
+    color: #333;
+    position: relative;
 }
 
-#member-section img { 
-  width: 150px; 
-  border-radius: 50%; 
-  margin: 10px 0; 
-} 
- 
-button { 
-  margin: 10px; 
-  padding: 10px 15px; 
-  background-color: #007BFF; 
-  border: none; 
-  border-radius: 5px; 
-  color: white; 
-  cursor: pointer; 
-} 
- 
-button:hover { 
-  background-color: #0056b3; 
-} 
+/* Reloj en esquina superior derecha */
+#clock {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    font-size: 16px;
+    color: #2c3e50;
+    border: 2px solid #3498db;
+    min-width: 100px;
+    text-align: center;
+    z-index: 1000;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+#team-name {
+    color: #3498db;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+#member-section {
+    margin: 30px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3498db;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#member-photo:hover {
+    transform: scale(1.05);
+}
+
+#member-desc {
+    font-size: 18px;
+    margin: 0;
+    transition: opacity 0.3s ease;
+    font-weight: 400;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#colorButton {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+}
+
+#switchButton {
+    background: linear-gradient(45deg, #45b7d1, #96ceb4);
+    color: white;
+}
+
+#themeButton {
+    background: linear-gradient(45deg, #f093fb, #f5576c);
+    color: white;
+}
+
+#animateButton {
+    background: linear-gradient(45deg, #ffecd2, #fcb69f);
+    color: #333;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Modo oscuro */
+body.dark-theme {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+body.dark-theme h1 {
+    color: #ecf0f1;
+}
+
+body.dark-theme #team-name {
+    color: #3498db;
+}
+
+body.dark-theme #member-section {
+    background-color: rgba(52, 73, 94, 0.8);
+    color: #ecf0f1;
+}
+
+body.dark-theme #clock {
+    background-color: rgba(52, 73, 94, 0.9);
+    color: #ecf0f1;
+    border-color: #3498db;
+}
